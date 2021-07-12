@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PokemonListRoutingModule } from './pokemon-list-routing.module';
 import { PokemonListComponent } from './pokemon-list.component';
-
+import { PokemonListService } from './pokemon-list.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [
-    PokemonListComponent
-  ],
+  declarations: [PokemonListComponent],
   imports: [
     CommonModule,
-    PokemonListRoutingModule
-  ]
+    PokemonListRoutingModule,
+    MatCardModule,
+    MatPaginatorModule,
+  ],
+  providers: [PokemonListService],
 })
-export class PokemonListModule { }
+export class PokemonListModule {}

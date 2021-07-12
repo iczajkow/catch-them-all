@@ -1,1 +1,14 @@
-<p>pokemon-list works!</p>
+<div class="pokemon-list-page container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="header-title">Pokemon List
+        <mat-paginator
+          [length]="100"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+        >
+        </mat-paginator
+      ></mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
