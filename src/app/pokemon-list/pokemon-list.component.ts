@@ -11,7 +11,7 @@ import { PokemonListItemResponse } from '../shared/poke-api/models/pokemon-list-
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
 import { fakeAsync } from '@angular/core/testing';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'cta-pokemon-list',
@@ -46,6 +46,11 @@ export class PokemonListComponent implements OnInit, OnDestroy {
       .subscribe((value) => {
         this.pokemonListService.handleFilterChange(value);
       });
+
+    this.pokemonListService
+      .selectQuery()
+      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
+      .subscribe((value) => this.filter.setValue(value, { emitEvent: false }));
 
     this.pokemonListService.fetchPokemons();
   }

@@ -70,6 +70,10 @@ export class PokemonListService {
     return this.pokemonsQuery.selectPageIndex();
   }
 
+  selectQuery(): Observable<string> {
+    return this.pokemonsQuery.selectQuery();
+  }
+
   private filterPokemons(pokemons: PokemonListItemResponse[], query: string) {
     return pokemons.filter((pokemon) =>
       pokemon.name.includes(query.toLowerCase())

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { POKE_API_CONFIG, PokeApiConfig } from './poke-api.config';
 import { Observable } from 'rxjs';
 import { PokemonListResponse } from './models/pokemon-list-response';
+import { PokemonDetailsResponse } from './models/pokemon-details-response';
 
 @Injectable()
 export class PokemonApiService {
@@ -16,5 +17,11 @@ export class PokemonApiService {
     return this.http.get<PokemonListResponse>(`${this.config.url}pokemon`, {
       params,
     });
+  }
+
+  getOne(nameOrId: string): Observable<PokemonDetailsResponse> {
+    return this.http.get<PokemonDetailsResponse>(
+      `${this.config.url}pokemon/${nameOrId}`
+    );
   }
 }

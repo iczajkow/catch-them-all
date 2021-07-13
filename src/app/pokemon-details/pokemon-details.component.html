@@ -1,1 +1,15 @@
-<p>pokemon-details works!</p>
+<div class="pokemon-details-page container">
+  <mat-card *ngIf="pokemon$ | async as pokemon">
+    <div class="pokemon-card-header">
+      <img class="pokemon-avatar" mat-card-avatar [src]="pokemon.sprites.front_default" />
+      <h2 class="pokemon-title">{{ pokemon.name | uppercase }}</h2>
+      <a class="back-arrow" [routerLink]="['/list']">
+        <mat-icon aria-hidden="false" aria-label="Back icon">arrow_back</mat-icon>
+      </a>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-content class="pokemon-card-content">
+      <cta-pokemon-stats [stats]="pokemon.stats"></cta-pokemon-stats>
+    </mat-card-content>
+  </mat-card>
+</div>
