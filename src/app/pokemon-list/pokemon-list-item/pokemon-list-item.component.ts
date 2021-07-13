@@ -10,7 +10,7 @@ import { PokemonListItemResponse } from '../../shared/poke-api/models/pokemon-li
 export class PokemonListItemComponent {
   private _pokemon: PokemonListItemResponse | null = null;
 
-  private pokemonName = '';
+  pokemonName = '';
 
   @Input() set pokemon(value: PokemonListItemResponse) {
     this._pokemon = value;

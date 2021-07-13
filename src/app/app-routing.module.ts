@@ -17,8 +17,15 @@ const routes: Routes = [
     loadChildren: () => import('./not-found').then((m) => m.NotFoundModule),
   },
   {
+    path: 'pokemon',
+    loadChildren: () =>
+      import('./pokemon-details/pokemon-details.module').then(
+        (m) => m.PokemonDetailsModule
+      ),
+  },
+  {
     path: '**',
-    redirectTo: 'pageNotFound'
+    redirectTo: 'pageNotFound',
   },
 ];
 
