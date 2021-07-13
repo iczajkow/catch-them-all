@@ -1,14 +1,23 @@
 <div class="pokemon-list-page container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title class="header-title">Pokemon List
+      <mat-card-title class="header-title"
+        >Pokemon List
         <mat-paginator
-          [length]="100"
-          [pageSize]="10"
+          [length]="pokemonsCount$ | async"
+          [pageSize]="pageSize$ | async"
+          [pageIndex]="pageIndex$ | async"
+          (page)="onPageChange($event)"
           [pageSizeOptions]="[5, 10, 25, 100]"
         >
         </mat-paginator
       ></mat-card-title>
     </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-list role="list">
+      <mat-list-item *ngFor="let pokemon of pokemons$ | async" role="listitem">
+        {{ pokemon.name }}
+      </mat-list-item>
+    </mat-list>
   </mat-card>
 </div>

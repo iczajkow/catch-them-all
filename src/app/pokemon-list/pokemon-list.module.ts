@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PokemonsStore } from './store/pokemons.store';
 import { PokemonProviderService } from './pokemon-provider.service';
+import { PokemonsQuery } from './store/pokemons.query';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [PokemonListComponent],
@@ -15,7 +17,13 @@ import { PokemonProviderService } from './pokemon-provider.service';
     PokemonListRoutingModule,
     MatCardModule,
     MatPaginatorModule,
+    MatListModule
   ],
-  providers: [PokemonListService, PokemonsStore, PokemonProviderService],
+  providers: [
+    PokemonListService,
+    PokemonsStore,
+    PokemonsQuery,
+    PokemonProviderService,
+  ],
 })
 export class PokemonListModule {}
