@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [PokemonListComponent, PokemonListItemComponent],
@@ -23,6 +24,7 @@ import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.
     MatListModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatRadioModule
   ],
   providers: [
     PokemonListService,

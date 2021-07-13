@@ -3,12 +3,18 @@
     <mat-card-header>
       <mat-card-title class="header-title">
         <div>
-          <span>Pokemon List</span>
           <span>
             <mat-form-field class="search-field" appearance="outline">
               <mat-label>Search</mat-label>
               <input matInput [formControl]="filter" />
             </mat-form-field>
+          </span>
+          <span class="list-mode-selector">
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="1">All</mat-radio-button>
+              <mat-radio-button value="2">Caught</mat-radio-button>
+              <mat-radio-button value="3">Wish List</mat-radio-button>
+            </mat-radio-group>
           </span>
         </div>
         <mat-paginator

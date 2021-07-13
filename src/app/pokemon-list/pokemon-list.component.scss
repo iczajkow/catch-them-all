@@ -16,6 +16,11 @@ cta-pokemon-list {
 
   .search-field {
     font-size: 0.75rem;
-    margin-left: 2rem;
+  }
+
+  .list-mode-selector {
+    .mat-radio-button {
+      margin-left: 1rem;
+    }
   }
 }
