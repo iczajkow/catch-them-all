@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonStatsComponent } from './pokemon-stats/pokemon-stats.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PokemonStatsComponent } from './pokemon-stats/pokemon-stats.component';
     PokemonDetailsRoutingModule,
     MatCardModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [PokemonResolverService]
 })

@@ -21,8 +21,7 @@ export class PokemonResolverService
   ) {}
 
   resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    route: ActivatedRouteSnapshot
   ): Observable<PokemonDetailsResponse | null> {
     const idOrName = route.paramMap.get('id');
     if (!idOrName) {
