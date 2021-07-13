@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PokemonListService } from './pokemon-list.service';
 
 @Component({
@@ -8,6 +8,12 @@ import { PokemonListService } from './pokemon-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PokemonListComponent {
-  constructor(private readonly pokemonListService: PokemonListService) {}
+export class PokemonListComponent implements OnInit {
+
+  constructor(private readonly pokemonListService: PokemonListService) {
+  }
+
+  ngOnInit() {
+    this.pokemonListService.fetchPokemons();
+  }
 }
