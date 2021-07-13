@@ -5,12 +5,13 @@ import { PokemonListItemResponse } from '../../shared/poke-api/models/pokemon-li
 export interface PokemonsState extends EntityState<PokemonListItemResponse> {
   pageSize: number;
   pageIndex: number;
+  query: string;
 }
 
 @Injectable()
 @StoreConfig({ name: 'pokemons', idKey: 'name' })
 export class PokemonsStore extends EntityStore<PokemonsState> {
   constructor() {
-    super({ pageSize: 100, pageIndex: 0 });
+    super({ pageSize: 10, pageIndex: 0 });
   }
 }

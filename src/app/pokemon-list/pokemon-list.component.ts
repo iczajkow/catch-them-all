@@ -1,13 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { PokemonListService } from './pokemon-list.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { PokemonListItemResponse } from '../shared/poke-api/models/pokemon-list-response';
 import { PageEvent } from '@angular/material/paginator';
+import { FormControl } from '@angular/forms';
+import { fakeAsync } from '@angular/core/testing';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'cta-pokemon-list',
@@ -16,13 +20,20 @@ import { PageEvent } from '@angular/material/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, OnDestroy {
   pokemons$: Observable<PokemonListItemResponse[]>;
   pokemonsCount$: Observable<number>;
   pageSize$: Observable<number>;
   pageIndex$: Observable<number>;
 
+  filter: FormControl;
+
+  private readonly destroy$: Subject<void>;
+
   constructor(private readonly pokemonListService: PokemonListService) {
+    this.filter = new FormControl();
+    this.destroy$ = new Subject();
+
     this.pokemons$ = this.pokemonListService.selectPokemons();
     this.pokemonsCount$ = this.pokemonListService.selectPokemonsCount();
     this.pageSize$ = this.pokemonListService.selectPageSize();
@@ -30,7 +41,18 @@ export class PokemonListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.filter.valueChanges
+      .pipe(takeUntil(this.destroy$), debounceTime(250))
+      .subscribe((value) => {
+        this.pokemonListService.handleFilterChange(value);
+      });
+
     this.pokemonListService.fetchPokemons();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onPageChange(event: PageEvent) {

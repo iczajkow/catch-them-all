@@ -9,6 +9,8 @@ import { PokemonsStore } from './store/pokemons.store';
 import { PokemonProviderService } from './pokemon-provider.service';
 import { PokemonsQuery } from './store/pokemons.query';
 import { MatListModule } from '@angular/material/list';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [PokemonListComponent],
@@ -17,7 +19,9 @@ import { MatListModule } from '@angular/material/list';
     PokemonListRoutingModule,
     MatCardModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [
     PokemonListService,

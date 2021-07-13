@@ -16,4 +16,8 @@ export class PokemonsQuery extends QueryEntity<PokemonsState> {
   selectPageIndex(): Observable<number> {
     return this.select('pageIndex');
   }
+
+  selectQuery(): Observable<string> {
+    return this.select('query');
+  }
 }

@@ -26,22 +26,43 @@ export class PokemonListService {
     this.pokemonsStore.update({ pageIndex, pageSize });
   }
 
+  handleFilterChange(query: string) {
+    this.pokemonsStore.update({ query, pageIndex: 0 });
+  }
+
   selectPokemons(): Observable<PokemonListItemResponse[]> {
     return combineQueries([
       this.pokemonsQuery.selectAll(),
       this.pokemonsQuery.selectPageIndex(),
       this.pokemonsQuery.selectPageSize(),
+      this.pokemonsQuery.selectQuery(),
     ]).pipe(
-      map(([pokemons, pageIndex, pageSize]) => {
+      map(([pokemons, pageIndex, pageSize, query]) => {
         const from = pageSize * pageIndex;
         const to = from + pageSize;
-        return pokemons.slice(from, to);
+        if (!query) {
+          return pokemons.slice(from, to);
+        }
+        return pokemons
+          .filter((pokemon) => pokemon.name.includes(query))
+          .slice(from, to);
       })
     );
   }
 
   selectPokemonsCount(): Observable<number> {
-    return this.pokemonsQuery.selectCount();
+    return combineQueries([
+      this.pokemonsQuery.selectAll(),
+      this.pokemonsQuery.selectQuery(),
+    ]).pipe(
+      map(([pokemons, query]) => {
+        if (!query) {
+          return pokemons.length;
+        }
+        return pokemons.filter((pokemon) => pokemon.name.includes(query))
+          .length;
+      })
+    );
   }
 
   selectPageSize(): Observable<number> {

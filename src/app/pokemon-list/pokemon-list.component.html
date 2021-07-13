@@ -1,8 +1,16 @@
 <div class="pokemon-list-page container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title class="header-title"
-        >Pokemon List
+      <mat-card-title class="header-title">
+        <div>
+          <span>Pokemon List</span>
+          <span>
+            <mat-form-field class="search-field" appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput [formControl]="filter" />
+            </mat-form-field>
+          </span>
+        </div>
         <mat-paginator
           [length]="pokemonsCount$ | async"
           [pageSize]="pageSize$ | async"
