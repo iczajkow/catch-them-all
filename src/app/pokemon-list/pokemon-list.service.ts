@@ -43,9 +43,7 @@ export class PokemonListService {
         if (!query) {
           return pokemons.slice(from, to);
         }
-        return pokemons
-          .filter((pokemon) => pokemon.name.includes(query))
-          .slice(from, to);
+        return this.filterPokemons(pokemons, query).slice(from, to);
       })
     );
   }
@@ -59,8 +57,7 @@ export class PokemonListService {
         if (!query) {
           return pokemons.length;
         }
-        return pokemons.filter((pokemon) => pokemon.name.includes(query))
-          .length;
+        return this.filterPokemons(pokemons, query).length;
       })
     );
   }
@@ -71,5 +68,11 @@ export class PokemonListService {
 
   selectPageIndex(): Observable<number> {
     return this.pokemonsQuery.selectPageIndex();
+  }
+
+  private filterPokemons(pokemons: PokemonListItemResponse[], query: string) {
+    return pokemons.filter((pokemon) =>
+      pokemon.name.includes(query.toLowerCase())
+    );
   }
 }

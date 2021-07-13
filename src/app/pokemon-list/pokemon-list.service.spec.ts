@@ -71,4 +71,15 @@ describe('PokemonListService', () => {
       expect(spy).toHaveBeenCalledWith(1);
     })
   ));
+
+  it('should return count of all pokemons', inject(
+    [PokemonsStore],
+    fakeAsync((store: PokemonsStore) => {
+      store.set(generatePokemonList(10));
+      const spy = jasmine.createSpy();
+      service.selectPokemonsCount().subscribe(spy);
+      tick();
+      expect(spy).toHaveBeenCalledWith(10);
+    })
+  ));
 });

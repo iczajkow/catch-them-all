@@ -11,9 +11,10 @@ import { PokemonsQuery } from './store/pokemons.query';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 
 @NgModule({
-  declarations: [PokemonListComponent],
+  declarations: [PokemonListComponent, PokemonListItemComponent],
   imports: [
     CommonModule,
     PokemonListRoutingModule,
