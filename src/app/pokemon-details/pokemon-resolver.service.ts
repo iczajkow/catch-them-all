@@ -34,6 +34,7 @@ export class PokemonResolverService
           this.router.navigate(['/pageNotFound']);
           return of(null);
         }
+        this.router.navigate(['/list']);
         throw error;
       })
     );
