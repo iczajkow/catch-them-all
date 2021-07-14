@@ -6,8 +6,10 @@ export interface OwnListState extends EntityState<PokemonDetailsResponse> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'ownlist', idKey: 'name' })
-export class OwnListStore extends EntityStore<OwnListState> {
+export class CaughtListStore extends EntityStore<OwnListState> {
   constructor() {
     super();
   }
 }
+
+

@@ -14,6 +14,10 @@ export class PokemonWishListService {
     private readonly wishListQuery: WishListQuery
   ) {}
 
+  isInWishListSync(name: string): boolean {
+    return this.wishListQuery.hasEntity(name);
+  }
+
   selectHasInWishList(name: string): Observable<boolean> {
     return this.wishListQuery
       .selectEntity(name)

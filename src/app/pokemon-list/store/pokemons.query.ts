@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { PokemonsStore, PokemonsState } from './pokemons.store';
+import { PokemonsStore, PokemonsState, ListMode } from './pokemons.store';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -19,5 +19,9 @@ export class PokemonsQuery extends QueryEntity<PokemonsState> {
 
   selectQuery(): Observable<string> {
     return this.select('query');
+  }
+
+  selectMode(): Observable<ListMode> {
+    return this.select('listMode');
   }
 }

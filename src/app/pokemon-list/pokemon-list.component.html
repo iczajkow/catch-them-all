@@ -10,10 +10,10 @@
             </mat-form-field>
           </span>
           <span class="list-mode-selector">
-            <mat-radio-group aria-label="Select an option">
-              <mat-radio-button value="1">All</mat-radio-button>
-              <mat-radio-button value="2">Caught</mat-radio-button>
-              <mat-radio-button value="3">Wish List</mat-radio-button>
+            <mat-radio-group [formControl]="mode" aria-label="Select an option">
+              <mat-radio-button value="all">All</mat-radio-button>
+              <mat-radio-button value="caught">Caught</mat-radio-button>
+              <mat-radio-button value="wishList">Wish List</mat-radio-button>
             </mat-radio-group>
           </span>
         </div>

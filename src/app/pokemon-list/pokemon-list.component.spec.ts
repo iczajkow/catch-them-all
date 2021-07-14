@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokemonListComponent } from './pokemon-list.component';
+import { PokemonListService } from './pokemon-list.service';
+import { EMPTY } from 'rxjs';
 
 describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
@@ -8,9 +10,22 @@ describe('PokemonListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonListComponent ]
-    })
-    .compileComponents();
+      declarations: [PokemonListComponent],
+      providers: [
+        {
+          provide: PokemonListService,
+          useValue: {
+            selectPokemons: () => EMPTY,
+            selectPokemonsCount: () => EMPTY,
+            selectPageSize: () => EMPTY,
+            selectPageIndex: () => EMPTY,
+            selectQuery: () => EMPTY,
+            selectMode: () => EMPTY,
+            fetchPokemons: () => {},
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

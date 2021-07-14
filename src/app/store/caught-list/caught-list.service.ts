@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PokemonDetailsResponse } from '../../shared/poke-api/models/pokemon-details-response';
-import { OwnListStore } from './ownlist.store';
-import { OwnListQuery } from './ownlist.query';
+import { CaughtListStore } from './caught-list.store';
+import { CaughtListQuery } from './caught-list.query';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,9 +10,13 @@ import { map } from 'rxjs/operators';
 })
 export class CaughtListService {
   constructor(
-    private readonly store: OwnListStore,
-    private readonly query: OwnListQuery
+    private readonly store: CaughtListStore,
+    private readonly query: CaughtListQuery
   ) {}
+
+  isCaughtSync(name: string): boolean {
+    return this.query.hasEntity(name);
+  }
 
   isCaught(name: string): Observable<boolean> {
     return this.query.selectEntity(name).pipe(map((value) => value != null));

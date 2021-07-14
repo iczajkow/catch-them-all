@@ -27,11 +27,13 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   pageIndex$: Observable<number>;
 
   filter: FormControl;
+  mode: FormControl;
 
   private readonly destroy$: Subject<void>;
 
   constructor(private readonly pokemonListService: PokemonListService) {
     this.filter = new FormControl();
+    this.mode = new FormControl();
     this.destroy$ = new Subject();
 
     this.pokemons$ = this.pokemonListService.selectPokemons();
@@ -41,8 +43,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    const formDebounceTime = 250;
+
     this.filter.valueChanges
-      .pipe(takeUntil(this.destroy$), debounceTime(250))
+      .pipe(takeUntil(this.destroy$), debounceTime(formDebounceTime))
       .subscribe((value) => {
         this.pokemonListService.handleFilterChange(value);
       });
@@ -51,6 +55,15 @@ export class PokemonListComponent implements OnInit, OnDestroy {
       .selectQuery()
       .pipe(takeUntil(this.destroy$), distinctUntilChanged())
       .subscribe((value) => this.filter.setValue(value, { emitEvent: false }));
+
+    this.mode.valueChanges
+      .pipe(takeUntil(this.destroy$), debounceTime(formDebounceTime))
+      .subscribe((value) => this.pokemonListService.handleModeChange(value));
+
+    this.pokemonListService
+      .selectMode()
+      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
+      .subscribe((value) => this.mode.setValue(value));
 
     this.pokemonListService.fetchPokemons();
   }

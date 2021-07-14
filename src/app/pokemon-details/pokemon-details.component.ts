@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, pluck, switchMap } from 'rxjs/operators';
 import { PokemonDetailsResponse } from '../shared/poke-api/models/pokemon-details-response';
-import { PokemonWishListService } from '../store/wishlist/pokemon-wish-list.service';
-import { CaughtListService } from '../store/ownlist/caught-list.service';
+import { PokemonWishListService } from '../store/wish-list/pokemon-wish-list.service';
+import { CaughtListService } from '../store/caught-list/caught-list.service';
 
 @Component({
   selector: 'cta-pokemon-details',
